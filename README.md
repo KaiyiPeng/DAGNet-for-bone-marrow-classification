@@ -5,11 +5,15 @@ We propose DAGNet based on DenseNet for classifying cells in bone marrow smears.
 
 After downloading and decompressing the MLL data set, execute the following command to generate a list of cell image paths
 
+```cpp
 python cell_tans.py --data_dir=''
+```
 
 "data_dir" is the path where the "bone_marrow_cell_dataset" folder is located.
 
+```cpp
 The command for five-folders cross-validation is
+```
 
 python train_5f.py --model=DAGNet --resume=True --cell_list_path='./archive/cell_list'
 
