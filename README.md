@@ -11,8 +11,7 @@ python cell_tans.py --data_dir=''
 
 "data_dir" is the path where the "bone_marrow_cell_dataset" folder is located.
 
-The command for five-folders cross-validation is
-
+Install PyTorch 1.10 or later. The command for five-folders cross-validation is
 
 ```cpp
 python train_5f.py --model=DAGNet --resume=True --cell_list_path='./archive/cell_list'
