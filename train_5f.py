@@ -11,15 +11,16 @@ warnings.filterwarnings("ignore")
 parser = argparse.ArgumentParser(description='manual to this script')
 parser.add_argument('--model', type=str, default='densenet')
 parser.add_argument('--resume', type=str, default='True')
+parser.add_argument('--cell_list_path', type=str, default='./archive/cell_list')
 args = parser.parse_args()
 
 model_name = args.model  #DAGNet densenet resNeXt101 resNeXt50
 resume = args.resume == 'True'
+cell_list_path = args.cell_list_path
 base_lr = 0.001
 batch_size = 32
 folder_num = 5
 reset_lr_epoch = 5
-cell_list_path = '/DISK0/DATA base/archive/cell_list'
 
 t_correct = [0] * 21
 t_count = [0] * 21

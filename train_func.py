@@ -13,7 +13,7 @@ from networks2_2 import DAGNet
 from networks3_1 import resNeXt101_64x4d, resNeXt50_32x4d
 
 def train_func(model_name='DAGNet', resume=False, base_lr=0.001, batch_size=32, reset_lr_epoch=5,
-               folder_num=5, folder=0, cell_list_path='/DISK0/DATA base/archive/cell_list'):
+               folder_num=5, folder=0, cell_list_path='./archive/cell_list'):
     #################
 
     # network and optimizer
