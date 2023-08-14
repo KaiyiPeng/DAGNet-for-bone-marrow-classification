@@ -1,9 +1,11 @@
 import os
-import numpy as np
-import cv2
 
-# data_dir = '/DISK0/DATA base/archive/'
-data_dir = '/media/pky/HDD2/DATA base/tt/'
+import argparse
+
+parser = argparse.ArgumentParser(description='manual to this script')
+parser.add_argument('--data_dir', type=str, default='')
+args = parser.parse_args()
+data_dir = args.data_dir   # '/DISK0/DATA base/archive/'
 data_folders = os.listdir(data_dir)
 cell_list = []
 for df in data_folders:

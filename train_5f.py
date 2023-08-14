@@ -1,10 +1,12 @@
-import os
-import torch
 from train_func import train_func
 from prettytable import PrettyTable
 import warnings
-
 import argparse
+
+parser = argparse.ArgumentParser(description='manual to this script')
+parser.add_argument('--data_dir', type=str, default='')
+args = parser.parse_args()
+data_dir = args.data_dir   # '/DISK0/DATA base/archive/'
 
 warnings.filterwarnings("ignore")
 

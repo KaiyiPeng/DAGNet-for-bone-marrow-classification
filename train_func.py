@@ -1,5 +1,3 @@
-import os
-import time
 from cell_loader import Cell_PathLoader, CellLoader
 import torch.backends.cudnn as cudnn
 
