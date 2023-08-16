@@ -5,35 +5,16 @@ import torch.nn.functional as F
 import torch.utils.model_zoo as model_zoo
 from collections import OrderedDict
 
-__all__ = ['DenseNet', 'DAGNet']
-
-
-model_urls = {
-    'densenet201': 'https://download.pytorch.org/models/densenet201-c1103571.pth',
-}
-
-
 def DAGNet(pretrained=False, **kwargs):
     model = DenseNet(num_init_features=64, growth_rate=32, block_config=(6, 12, 48, 32),
                      **kwargs)
     if pretrained:
-        state_dict = model_zoo.load_url(model_urls['densenet201'])
-        pattern = re.compile(
-            r'^(.*denselayer\d+\.(?:norm|relu|conv))\.((?:[12])\.(?:weight|bias|running_mean|running_var))$')
+        state_dict = torch.load('../model_pretrain_0.t7')['net']
         for key in list(state_dict.keys()):
-            res = pattern.match(key)
-            if res:
-                new_key = res.group(1) + res.group(2)
-                state_dict[new_key] = state_dict[key]
-                del state_dict[key]
-                key = new_key
-            if key[:20] == 'features.denseblock1':
-                new1_key = 'DB1.denseblock1' + key[20:]
-                new2_key = 'DB_att.denseblock1' + key[20:]
-                state_dict[new1_key] = state_dict[key]
-                state_dict[new2_key] = state_dict[key]
-                del state_dict[key]
-        model.load_state_dict(state_dict, strict=False)
+            new1_key = key[7:]
+            state_dict[new1_key] = state_dict[key]
+            del state_dict[key]
+        model.load_state_dict(state_dict, strict=True)
     return model
 
 

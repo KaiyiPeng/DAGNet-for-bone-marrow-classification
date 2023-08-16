@@ -11,9 +11,9 @@ data_dir = args.data_dir   # '/DISK0/DATA base/archive/'
 warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser(description='manual to this script')
-parser.add_argument('--model', type=str, default='densenet')
+parser.add_argument('--model', type=str, default='DAGNet')
 parser.add_argument('--resume', type=str, default='True')
-parser.add_argument('--cell_list_path', type=str, default='./archive/cell_list')
+parser.add_argument('--cell_list_path', type=str, default='/DISK0/DATA base/archive/cell_list')     # './archive/cell_list'
 args = parser.parse_args()
 
 model_name = args.model  #DAGNet densenet resNeXt101 resNeXt50
@@ -22,7 +22,10 @@ cell_list_path = args.cell_list_path
 base_lr = 0.001
 batch_size = 32
 folder_num = 5
-reset_lr_epoch = 5
+if resume:
+    reset_lr_epoch = 5  # 5
+else:
+    reset_lr_epoch = 16
 
 t_correct = [0] * 21
 t_count = [0] * 21
@@ -31,6 +34,7 @@ for f in range(folder_num):
     count, pcount, correct, TNeg = train_func(model_name=model_name, resume=resume, base_lr=base_lr, batch_size=batch_size,
                                               reset_lr_epoch=reset_lr_epoch, folder_num=folder_num, folder=f,
                                               cell_list_path=cell_list_path)
+
     t_count = [t_count[i] + count[i] for i in range(0, len(t_count))]
     t_pcount = [t_pcount[i] + pcount[i] for i in range(0, len(pcount))]
     t_correct = [t_correct[i] + correct[i] for i in range(0, len(t_correct))]

@@ -68,7 +68,7 @@ def train_func(model_name='DAGNet', resume=False, base_lr=0.001, batch_size=32, 
             t_lr = lr
             for param_group in optimizer.param_groups:
                 param_group['lr'] = t_lr
-            for i, (cell_data, label) in enumerate(train_data):
+            for i, (cell_data, label, _) in enumerate(train_data):
                 optimizer.zero_grad()
                 cell_data = cell_data.to(device).float()
                 label = label.to(device)
@@ -90,7 +90,7 @@ def train_func(model_name='DAGNet', resume=False, base_lr=0.001, batch_size=32, 
     count = [0] * 21
     pcount = [0.00001] * 21
 
-    for i, (cell_data, label) in enumerate(val_data):
+    for i, (cell_data, label, cell_path) in enumerate(val_data):
         cell_data = cell_data.to(device).float()
         label = label.to(device)
         cell_class, _, att_f_i, att_f_l = MBC_Networks(cell_data)
