@@ -9,7 +9,7 @@ def DAGNet(pretrained=False, **kwargs):
     model = DenseNet(num_init_features=64, growth_rate=32, block_config=(6, 12, 48, 32),
                      **kwargs)
     if pretrained:
-        state_dict = torch.load('../model_pretrain_0.t7')['net']
+        state_dict = torch.load('./model_pretrain_0.t7')['net']
         for key in list(state_dict.keys()):
             new1_key = key[7:]
             state_dict[new1_key] = state_dict[key]
