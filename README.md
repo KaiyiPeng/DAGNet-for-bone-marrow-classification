@@ -18,3 +18,5 @@ python train_5f.py --model=DAGNet --resume=True --cell_list_path='./archive/cell
 ```
 
 The "model" parameter is used to select different network models, and the optional models include densenet, DAGNet, resNeXt50, resNeXt101. The "resume" parameter is the option to load the pre-trained model. "cell_list_path" indicates the address list file of all images in the dataset.
+
+You can download the pre-trained model of DAGNet here: https://pan.baidu.com/s/1EXJn-4ePmXbifVYLXdwLlQ?pwd=4gi9
